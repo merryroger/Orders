@@ -1,0 +1,320 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    background-color: #ffffff;
+}
+
+div.pt {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+div.ptc {
+    display: table-cell;
+}
+
+form {
+    padding: 20px 20pt;
+    font: 400 11pt "Fira Sans Extra Condensed", sans-serif;
+}
+
+div.login_form {
+    margin: auto;
+    width: 280px;
+    border: 1px solid #4b4e51;
+    border-radius: 10px;
+}
+
+div.order_form {
+    margin: auto;
+    width: 320px;
+    border: 1px solid #4b4e51;
+    border-radius: 10px;
+}
+
+div.form_caption {
+    padding: 5px 5pt;
+    color: #cbced1;
+    background-color: #4b4e51;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    font: 400 12pt "Fira Sans Extra Condensed", sans-serif;
+}
+
+div.form_row {
+    margin-bottom: 20px;
+}
+
+.form_row label {
+    float: left;
+    color: #4b4e51;
+}
+
+input.form_item {
+    float: right;
+    margin-left: 5pt;
+    padding: 2px 5pt;
+    width: 130px;
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+    color: #333333;
+    background-color: #eeeeee;
+}
+
+select.form_item {
+    float: right;
+    margin-left: 5pt;
+    margin-bottom: 20px;
+    padding: 2px 5pt;
+    min-width: 150px;
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+    color: #333333;
+    background-color: #eeeeee;
+}
+
+div.fmctrls {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.fmctrls button, .admfmctrls button {
+    margin-left: 2pt;
+    padding: 2px 16pt;
+    border-radius: 5px;
+    color: #40555d;
+    border-top: 1px solid #8b8e91;
+    border-left: 1px solid #8b8e91;
+    border-right: 1px solid #4b4e51;
+    background-color: #e0e0e0;
+    font: 400 11pt "Fira Sans Extra Condensed", sans-serif;
+    cursor: pointer;
+}
+
+button.cancel {
+    border-bottom: 1px solid #cc0000;
+}
+
+button.do {
+    border-bottom: 1px solid #009900;
+}
+
+#dd_menu {
+    position: absolute;
+    padding: 5px 10pt 8px;
+    background-color: #f0f2f4;
+    border: 1px solid #999999;
+    border-radius: 5px;
+}
+
+div#dd_menu a {
+    color: #4d98d7;
+    font-size: 11pt;
+}
+
+div.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px 0;
+    width: 100%;
+    background-color: #eeeeee;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    font: 400 12pt "Fira Sans Extra Condensed", sans-serif;
+}
+
+div.ral.links {
+    margin: 0 30pt 0 5pt;
+}
+
+div.lal.links {
+    margin: 0 5pt 0 40pt;
+}
+
+.links a {
+    color: #1d68c0;
+}
+
+.alink {
+    color: #555555;
+}
+
+.info {
+    color: #666666;
+    font: 400 12pt "Fira Sans Extra Condensed", sans-serif;
+}
+
+.v {
+    display: block;
+}
+
+.h {
+    display: none;
+}
+
+.hc {
+    text-align: center;
+}
+
+.vc {
+    vertical-align: middle;
+}
+
+.vt {
+    vertical-align: top;
+}
+
+.et {
+    padding: 80px 40pt 20px;
+    overflow: auto;
+}
+
+.la {
+    text-align: left;
+}
+
+.ca {
+    text-align: center !important;
+}
+
+.ra {
+    padding-right: 20pt !important;
+    text-align: right !important;
+}
+
+.lal {
+    float: left;
+}
+
+.lal span {
+    margin-right: 15pt;
+}
+
+.ral {
+    float: right;
+}
+
+span.plus {
+    margin: 0 5pt 0 3pt;
+    padding: 0px 6px;
+    color: #5da8e7;
+    border-radius: 12px;
+    background-color: #444444;
+    cursor: pointer;
+}
+
+table.admlist {
+    margin: auto;
+    border-collapse: collapse;
+    font: 400 11pt "Fira Sans Extra Condensed", sans-serif;
+}
+
+.admlist caption {
+    padding: 4px 5pt;
+    text-align: right;
+    color: #3b3e41;
+    white-space: nowrap;
+}
+
+form.adm_form {
+    padding: 30px 30pt;
+    background-color: #dbdede;
+    border: 1px solid #bbbec1;
+    border-radius: 10px;
+}
+
+div.adm_form_row {
+    text-align: right;
+    padding: 5px 5pt 15px;
+}
+
+.adm_form_row label {
+    margin: 0 8pt;
+    /*color: #ebeef1;*/
+    text-align: right;
+}
+
+div.admfmctrls {
+    margin-top: 15px;
+    margin-right: 5pt;
+    text-align: right;
+}
+
+.adm_form_row input, .adm_form_row textarea {
+    margin-left: 5pt;
+    padding: 2px 5pt;
+    width: 200px;
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+    color: #333333;
+    background-color: #ebeeee;
+}
+
+.adm_form_row textarea {
+    resize: none;
+}
+
+.adm_form_row select {
+    margin-left: 5pt;
+    padding: 2px;
+    width: 215px;
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+    color: #333333;
+    background-color: #ebeeee;
+}
+
+.admlist th {
+    color: #3b3e41;
+    padding: 4px 6pt;
+    font-weight: 400;
+    border-bottom: 1px solid #3b3e41;
+}
+
+.adb td {
+    padding: 8px 6pt;
+    text-align: left;
+    font-size: 10pt;
+}
+
+.adb tr:nth-child(odd) {
+    background-color: #ebeef0;
+}
+
+.adb tr:nth-child(even) {
+    background-color: #dbdee1;
+}
+
+.adb tr:hover {
+    color: #6db8f7;
+    background-color: #3b3e41;
+}
+
+.delete {
+    color: #962b28;
+}
+
+.delete:hover {
+    color: #e3342f;
+    border-bottom: 1px dotted #e3342f;
+    cursor: pointer;
+}
+
+div.paginator {
+    padding: 5px 2pt;
+}
+
+span.page-item {
+    margin: 0 3pt;
+}
+
+div.inform {
+    text-align: center;
+    color: #555555;
+}
