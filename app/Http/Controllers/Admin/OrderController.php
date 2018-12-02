@@ -10,9 +10,9 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $hasProducts = Products::count();
+        $hasProducts = Products::withTrashed()->count();
         if ($hasProducts) {
-            $orders = Orders::paginate(2);
+            $orders = Orders::simplePaginate(2);
         }
 
         return ($hasProducts) ? view('product_orders', compact('orders')) : redirect()->route('admin.products.list');

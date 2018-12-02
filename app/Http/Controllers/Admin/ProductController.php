@@ -9,9 +9,11 @@ use App\Http\Controllers\Controller;
 class ProductController extends Controller
 {
 
+    private const PERPAGE = 3;
+
     public function index()
     {
-        $products = Products::withTrashed()->paginate(3);
+        $products = Products::withTrashed()->simplePaginate(self::PERPAGE);
 
         return view('admin.products', compact('products'));
     }
@@ -24,9 +26,9 @@ class ProductController extends Controller
     public function store(ProductAddRequest $request)
     {
         $fields = $request->only(['name', 'price']);
-        Products::create($fields);
+        $product = Products::create($fields);
 
-        return redirect()->route('admin.products.list');
+        return redirect()->route('admin.products.list', ['page=' . ceil($product->id / self::PERPAGE)]);
     }
 
     public function softDelete(Products $product)
