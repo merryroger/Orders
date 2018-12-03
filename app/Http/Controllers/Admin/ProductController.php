@@ -26,9 +26,11 @@ class ProductController extends Controller
     public function store(ProductAddRequest $request)
     {
         $fields = $request->only(['name', 'price']);
-        $product = Products::create($fields);
+        Products::create($fields);
 
-        return redirect()->route('admin.products.list', ['page=' . ceil($product->id / self::PERPAGE)]);
+        $products = Products::withTrashed()->count();
+
+        return redirect()->route('admin.products.list', ['page' => ceil($products / self::PERPAGE)]);
     }
 
     public function softDelete(Products $product)

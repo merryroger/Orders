@@ -13,8 +13,11 @@ class OrderController extends Controller
         $hasProducts = Products::withTrashed()->count();
         if ($hasProducts) {
             $orders = Orders::simplePaginate(2);
+
+            return view('product_orders', compact('orders'));
+        } else {
+            return redirect()->route('admin.products.list');
         }
 
-        return ($hasProducts) ? view('product_orders', compact('orders')) : redirect()->route('admin.products.list');
     }
 }
