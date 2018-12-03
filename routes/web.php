@@ -39,6 +39,10 @@ Route::namespace('Auth')->group(function () {
 });
 
 Route::get('/', function () {
-    return redirect('orders');
+    if (Auth::user() !== null) {
+        return redirect('admin/orders');
+    } else {
+        return redirect('orders');
+    }
 });
 
