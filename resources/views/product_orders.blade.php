@@ -9,9 +9,9 @@
                     <tr>
                         <th style="width: 5%;">#</th>
                         <th class="la" style="width: 15%;">User</th>
-                        <th style="width: 15%;">Email</th>
+                        <th class="la" style="width: 15%;">Email</th>
                         <th style="width: 15%;">Telephone</th>
-                        <th style="width: 35%;">Ordered item</th>
+                        <th class="la" style="width: 35%;">Ordered item</th>
                         <th style="width: 15%;">Price (RUR)</th>
                     </tr>
                     <tbody class="adb">

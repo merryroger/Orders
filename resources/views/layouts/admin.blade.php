@@ -15,7 +15,7 @@
         <div class="ral links">
             @auth
                 <span onmouseover="showDDMenu(this)" onmouseout="closeDDMenu()" onclick="return false;">
-                    <a href="#">{{ Auth::user()->name }}</a>
+                    <a href="#">@user(id)</a>
                 </span>
                 <div id="dd_menu" class="h">
                     <a href="{{ route('logout') }}"

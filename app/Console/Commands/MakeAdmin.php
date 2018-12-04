@@ -41,19 +41,30 @@ class MakeAdmin extends Command
     {
         $this->info("\nMaking an account of administrator");
 
+        $email = $this->ask('Specify e-mail');
+        if(DB::table('users')->get()->where('email', $email)->count()) {
+            $this->error('E-mail ' . $email . ' belongs to another user');
+
+            return;
+        }
+
         $login = $this->ask('Specify login');
-        $password = $this->secret('Specify password');
 
         if(DB::table('users')->get()->where('name', $login)->count()) {
             $this->error('User ' . $login . ' already exists');
-        } else {
-            DB::table('users')->insert([
-                'name' => $login,
-                'password' => Hash::make($password)
-            ]);
 
-            $this->info('User ' . $login . ' successfully added');
+            return;
         }
+
+        $password = $this->secret('Specify password');
+
+        DB::table('users')->insert([
+            'email' => $email,
+            'name' => $login,
+            'password' => Hash::make($password)
+        ]);
+
+        $this->info('User ' . $login . ' successfully added');
 
     }
 }
