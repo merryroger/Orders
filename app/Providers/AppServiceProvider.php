@@ -19,18 +19,19 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Blade::directive('user', function ($param) {
+            $UserName = 'Имя: ' . Auth::user()->name;
+            $Email = 'Email: ' . Auth::user()->email;
+
             switch (strtolower($param)) {
-                case 'id':
-                    $result = 'Имя: ' . Auth::user()->name . ', Email: ' . Auth::user()->email;
-                    break;
                 case 'name':
-                    $result = 'Имя: ' . Auth::user()->name;
+                    $result = $UserName;
                     break;
                 case 'email':
-                    $result = 'Email: ' . Auth::user()->email;
+                    $result = $Email;
                     break;
+                case 'id':
                 default:
-                    $result = '';
+                    $result = $UserName . ', ' . $Email;
             }
 
             return "<b>{$result}</b>";

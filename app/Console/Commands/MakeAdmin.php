@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class MakeAdmin extends Command
@@ -42,7 +42,7 @@ class MakeAdmin extends Command
         $this->info("\nMaking an account of administrator");
 
         $email = $this->ask('Specify e-mail');
-        if(DB::table('users')->get()->where('email', $email)->count()) {
+        if(User::email($email)->count()) {
             $this->error('E-mail ' . $email . ' belongs to another user');
 
             return;
@@ -50,7 +50,7 @@ class MakeAdmin extends Command
 
         $login = $this->ask('Specify login');
 
-        if(DB::table('users')->get()->where('name', $login)->count()) {
+        if(User::name($login)->count()) {
             $this->error('User ' . $login . ' already exists');
 
             return;
@@ -58,7 +58,7 @@ class MakeAdmin extends Command
 
         $password = $this->secret('Specify password');
 
-        DB::table('users')->insert([
+        User::insert([
             'email' => $email,
             'name' => $login,
             'password' => Hash::make($password)

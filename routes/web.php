@@ -38,5 +38,8 @@ Route::namespace('Auth')->group(function () {
     Route::post('/logout', 'LoginController@logout')->name('logout');
 });
 
-Route::redirect('/', 'orders')->middleware('go.home');
-
+Route::middleware('guest')->group(function () {
+    Route::get('/', function () {
+        return redirect('orders');
+    });
+});
