@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Foundation\Inspiring;
+use App\Models\Products;
+use App\Models\Orders;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +20,9 @@ Artisan::command('inspire', function () {
 })->describe('Display an inspiring quote');
 
 Artisan::command('orders:show', function () {
-    $hasProducts = \App\Models\Products::withTrashed()->count();
+    $hasProducts = Products::withTrashed()->count();
     if ($hasProducts) {
-        $orders = \App\Models\Orders::all(['id', 'name', 'email', 'phone', 'product_id'])->filter(function ($item) {
+        $orders = Orders::all(['id', 'name', 'email', 'phone', 'product_id'])->filter(function ($item) {
             $product = $item->product()->withTrashed()->find($item->product_id);
 
             $item->setAttribute('product_name', $product->name);

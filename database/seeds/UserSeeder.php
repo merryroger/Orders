@@ -14,7 +14,8 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'email' => 'admin@laravel.local',
             'name' => 'admin',
-            'password' => Hash::make('admin')]);
+            'password' => Hash::make('admin'),
+            'phone' => '+7 888 999-99-99']);
     }
 
 }

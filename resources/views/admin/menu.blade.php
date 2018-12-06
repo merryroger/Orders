@@ -1,4 +1,9 @@
 <div class="lal links">
+    @if(Route::currentRouteName() == 'orders.index')
+        <span class="alink">Make order</span>
+    @else
+        <span><a href="{{ route('orders.index') }}">Make order</a></span>
+    @endif
     @if(Route::currentRouteName() == 'admin.products.list')
         <span class="alink">Products<span class="plus" title="Add product" onclick="return requestEntity('{{ route('admin.products.add') }}')">+</span></span>
     @else

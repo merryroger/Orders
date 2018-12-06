@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MakeOrderRequest;
 use App\Models\Orders;
 use App\Models\Products;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -16,8 +17,13 @@ class OrderController extends Controller
         });
 
         $products = $products->pluck('alldata', 'id');
+        $User = Auth::user();
 
-        return view('order_products', compact('products'));
+        if ($User != null) {
+            return view('admin_order_products', compact(['products', 'User']));
+        } else {
+            return view('order_products', compact('products'));
+        }
     }
 
     public function store(MakeOrderRequest $request)

@@ -58,10 +58,13 @@ class MakeAdmin extends Command
 
         $password = $this->secret('Specify password');
 
+        $phone = $this->ask('Specify phone number');
+
         User::insert([
             'email' => $email,
             'name' => $login,
-            'password' => Hash::make($password)
+            'password' => Hash::make($password),
+            'phone' => $phone
         ]);
 
         $this->info('User ' . $login . ' successfully added');

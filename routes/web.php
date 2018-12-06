@@ -15,6 +15,7 @@ Route::namespace('Admin')->group(function () {
     Route::prefix('admin')->group(function () {
         Route::name('admin.')->group(function () {
             Route::get('/orders', 'OrderController@index')->name('orders.list');
+            Route::post('/orders/store', 'OrderController@store')->name('orders.store');
 
             Route::get('/products', 'ProductController@index')->name('products.list');
             Route::get('/products/add', 'ProductController@add')->name('products.add');
@@ -38,8 +39,12 @@ Route::namespace('Auth')->group(function () {
     Route::post('/logout', 'LoginController@logout')->name('logout');
 });
 
+Route::redirect('/', 'orders');
+
+/*
 Route::middleware('guest')->group(function () {
     Route::get('/', function () {
         return redirect('orders');
     });
 });
+*/

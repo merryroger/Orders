@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Orders;
 use App\Models\Products;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -20,4 +21,16 @@ class OrderController extends Controller
         }
 
     }
+
+    public function store(Request $request)
+    {
+        $fields = $request->only(['product_id', 'name', 'email', 'phone']);
+
+        Orders::create($fields);
+
+        session()->flash('orderdone', 'Your order has been accepted.');
+
+        return redirect()->route('orders.index');
+    }
+
 }

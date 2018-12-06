@@ -30,6 +30,9 @@
             @endauth
         </div>
         <br clear="all"/>
+        @if(session()->get('orderdone'))
+            @yield('inform')
+        @endif
     </div>
 @endif
 @yield('contents')
