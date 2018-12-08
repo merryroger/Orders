@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\ProductAddRequest;
 use App\Models\Products;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -33,18 +35,22 @@ class ProductController extends Controller
         return redirect()->route('admin.products.list', ['page' => ceil($products / self::PERPAGE)]);
     }
 
-    public function softDelete(Products $product)
+    public function softDelete(Request $request, Products $product)
     {
         $product->delete();
 
-        return redirect()->route('admin.products.list');
+        Log::notice('The "' . $product->name . '" product has been deleted.');
+
+        return redirect()->route('admin.products.list', ['page' => $request->page]);
     }
 
-    public function restore($id)
+    public function restore(Request $request, $id)
     {
         $product = Products::onlyTrashed()->find($id);
         $product->restore();
 
-        return redirect()->route('admin.products.list');
+        Log::notice('The "' . $product->name . '" product has been restored.');
+
+        return redirect()->route('admin.products.list', ['page' => $request->page]);
     }
 }

@@ -20,12 +20,12 @@
                         <td class="ca">
                             @if($product->trashed())
                                 <span class="delete" title="Restore"
-                                      onclick="return requestEntity('{{ route('admin.products.restore', [$product->id]) }}')">
+                                      onclick="return requestEntity('{{ route('admin.products.restore', [$product->id, 'page' => $products->currentPage()]) }}')">
                                     Restore
                                 </span>
                             @else
                                 <span class="delete" title="Delete"
-                                      onclick="return removeEntity('{{ route('admin.products.remove', [$product->id]) }}', 'You going to delete the selected item. Continue?')">
+                                      onclick="return removeEntity('{{ route('admin.products.remove', [$product->id, 'page' => $products->currentPage()]) }}', 'You going to delete the selected item. Continue?')">
                                     Delete
                                 </span>
                             @endif

@@ -16,11 +16,6 @@
                                     @endforeach
                                 </select>
                             </div><br clear="all" />
-
-                            <input id="name" type="hidden" name="name" value="{{ $User->name }}" />
-                            <input id="email" type="hidden" name="email" value="{{ $User->email }}" />
-                            <input id="phone" type="hidden" name="phone" value="{{ $User->phone }}" />
-
                             <div class="fmctrls">
                                 <button type="submit" class="do" tabindex="2">Order it</button>
                             </div>

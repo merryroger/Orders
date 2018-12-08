@@ -6,6 +6,7 @@ use App\Models\Orders;
 use App\Models\Products;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -24,7 +25,15 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        $fields = $request->only(['product_id', 'name', 'email', 'phone']);
+        $User = Auth::user();
+
+        $UserData = [
+            'name' => $User->name,
+            'email' => $User->email,
+            'phone' => $User->phone
+        ];
+
+        $fields = array_merge($request->only(['product_id']), $UserData);
 
         Orders::create($fields);
 

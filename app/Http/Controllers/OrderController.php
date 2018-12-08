@@ -17,10 +17,9 @@ class OrderController extends Controller
         });
 
         $products = $products->pluck('alldata', 'id');
-        $User = Auth::user();
 
-        if ($User != null) {
-            return view('admin_order_products', compact(['products', 'User']));
+        if (Auth::user() != null) {
+            return view('admin_order_products', compact('products'));
         } else {
             return view('order_products', compact('products'));
         }

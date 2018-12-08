@@ -36,7 +36,13 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily'],
+            'channels' => ['daily', 'remove'],
+        ],
+
+        'remove' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/deleted.log'),
+            'level' => 'notice',
         ],
 
         'single' => [
@@ -49,7 +55,7 @@ return [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
             'level' => 'debug',
-            'days' => 14,
+            'days' => 1,
         ],
 
         'slack' => [
