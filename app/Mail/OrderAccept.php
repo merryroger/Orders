@@ -31,9 +31,8 @@ class OrderAccept extends Mailable
      */
     public function build()
     {
-        $mailFrom = config('mail.from.address');
-        $sender = config('mail.from.name');
+        $mailFrom = config('mail.from');
 
-        return $this->view('email', ['order' => $this->order]);
+        return $this->from($mailFrom)->view('email', ['order' => $this->order]);
     }
 }
