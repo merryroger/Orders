@@ -39,7 +39,7 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        Log::notice('The "' . $product->name . '" product has been deleted.');
+        Log::channel('remove')->notice('The "' . $product->name . '" product has been deleted.');
 
         return redirect()->route('admin.products.list', ['page' => $request->page]);
     }
@@ -49,7 +49,7 @@ class ProductController extends Controller
         $product = Products::onlyTrashed()->find($id);
         $product->restore();
 
-        Log::notice('The "' . $product->name . '" product has been restored.');
+        Log::channel('restore')->notice('The "' . $product->name . '" product has been restored.');
 
         return redirect()->route('admin.products.list', ['page' => $request->page]);
     }

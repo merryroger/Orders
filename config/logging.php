@@ -36,13 +36,26 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily', 'remove'],
+            'channels' => ['daily_default'],
         ],
 
         'remove' => [
             'driver' => 'single',
             'path' => storage_path('logs/deleted.log'),
             'level' => 'notice',
+        ],
+
+        'restore' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/restored.log'),
+            'level' => 'notice',
+        ],
+
+        'email' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/email.log'),
+            'level' => 'debug',
+            'days' => 1,
         ],
 
         'single' => [
@@ -54,6 +67,13 @@ return [
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
+            'level' => 'debug',
+            'days' => 14,
+        ],
+
+        'daily_default' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/daily.log'),
             'level' => 'debug',
             'days' => 1,
         ],

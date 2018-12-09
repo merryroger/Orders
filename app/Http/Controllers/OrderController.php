@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MakeOrderRequest;
+use App\Mail\OrderAccept;
 use App\Models\Orders;
 use App\Models\Products;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -29,9 +31,11 @@ class OrderController extends Controller
     {
         $fields = $request->only(['product_id', 'name', 'email', 'phone']);
 
-        Orders::create($fields);
+        $order = Orders::create($fields);
 
-        session()->flash('orderdone', 'Your order has been accepted.');
+        Mail::to($order->email)->send(new OrderAccept($order));
+
+        session()->flash('orderdone', 'Your order had been accepted and confirmation has been sent via email.');
 
         return redirect()->route('orders.index');
     }
