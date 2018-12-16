@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->integer('product_id');
+            $table->boolean('checked')->default(false);
             $table->timestamps();
         });
     }

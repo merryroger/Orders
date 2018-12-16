@@ -43,6 +43,8 @@ class OrderController extends Controller
 
         session()->flash('orderdone', 'Your order had been accepted and confirmation has been sent via email.');
 
+        ProcessOrder::dispatch($User->email)->onConnection('database')->onQueue('orders')->delay(now()->addHour());
+
         return redirect()->route('orders.index');
     }
 

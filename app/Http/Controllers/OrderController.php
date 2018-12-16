@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MakeOrderRequest;
+use App\Jobs\ProcessOrder;
 use App\Mail\OrderAccept;
 use App\Models\Orders;
 use App\Models\Products;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
+
     public function index()
     {
         $products = Products::all()->filter(function ($item) {
@@ -37,6 +39,9 @@ class OrderController extends Controller
 
         session()->flash('orderdone', 'Your order had been accepted and confirmation has been sent via email.');
 
+        ProcessOrder::dispatch($request->get('email'))->onConnection('database')->onQueue('orders')->delay(now()->addHour());
+
         return redirect()->route('orders.index');
     }
+
 }
