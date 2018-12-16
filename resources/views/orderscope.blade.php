@@ -1,7 +1,7 @@
 <p>Order Scope Information</p>
 <p>Dear Customer,</p>
 <p>
-<p>During last hour you`ve ordered some prroducts.</p>
+<p>During last hour you`ve ordered some products.</p>
 <ol>
 @foreach($products as $product)
     <li>"{{ $product->name }}" that costs {{ $product->price }} RUR.</li>
