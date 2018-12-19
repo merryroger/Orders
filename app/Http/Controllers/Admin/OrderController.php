@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Jobs\ProcessOrder;
 use App\Models\Orders;
 use App\Models\Products;
 use App\Mail\OrderAccept;
