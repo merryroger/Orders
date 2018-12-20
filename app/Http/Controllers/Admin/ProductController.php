@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Events\ProductDeleted;
-use App\Events\ProductRestored;
 use App\Http\Requests\ProductAddRequest;
 use App\Models\Products;
 use App\Http\Controllers\Controller;
+use App\Observers\ProoductObserver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -43,8 +42,6 @@ class ProductController extends Controller
 
         Log::channel('remove')->notice('The "' . $product->name . '" product has been deleted.');
 
-        event(new ProductDeleted($product));
-
         return redirect()->route('admin.products.list', ['page' => $request->page]);
     }
 
@@ -54,8 +51,6 @@ class ProductController extends Controller
         $product->restore();
 
         Log::channel('restore')->notice('The "' . $product->name . '" product has been restored.');
-
-        event(new ProductRestored($product));
 
         return redirect()->route('admin.products.list', ['page' => $request->page]);
     }

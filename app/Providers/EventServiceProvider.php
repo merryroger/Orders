@@ -2,11 +2,8 @@
 
 namespace App\Providers;
 
-use App\Events\ProductDeleted;
-use App\Events\ProductRestored;
-use App\Listeners\OnProductDeleted;
-use App\Listeners\OnProductRestored;
-use Illuminate\Support\Facades\Event;
+use App\Models\Products;
+use App\Observers\ProoductObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -22,12 +19,6 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        ProductDeleted::class => [
-            OnProductDeleted::class,
-        ],
-        ProductRestored::class => [
-            OnProductRestored::class,
-        ],
     ];
 
     /**
@@ -39,6 +30,6 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        Products::observe(ProoductObserver::class);
     }
 }

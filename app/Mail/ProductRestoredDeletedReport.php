@@ -8,11 +8,12 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ProductDeletedReport extends Mailable
+class ProductRestoredDeletedReport extends Mailable
 {
     use Queueable, SerializesModels;
 
     private $product;
+
     /**
      * Create a new message instance.
      *
@@ -32,6 +33,8 @@ class ProductDeletedReport extends Mailable
     {
         $mailFrom = config('mail.from');
 
-        return $this->from($mailFrom)->view('product_deleted', ['product' => $this->product]);
+        $_view = ($this->product->deleted_at === null) ? 'product_restored' : 'product_deleted';
+
+        return $this->from($mailFrom)->view($_view, ['product' => $this->product]);
     }
 }
