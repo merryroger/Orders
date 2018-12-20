@@ -2,10 +2,8 @@
 
 namespace App\Providers;
 
-use App\Events\ProductDeleted;
-use App\Events\ProductRestored;
-use App\Listeners\OnProductDeleted;
-use App\Listeners\OnProductRestored;
+use App\Events\ProductRestoredDeleted;
+use App\Listeners\OnProductRestoredDeleted;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,11 +20,8 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        ProductDeleted::class => [
-            OnProductDeleted::class,
-        ],
-        ProductRestored::class => [
-            OnProductRestored::class,
+        ProductRestoredDeleted::class => [
+            OnProductRestoredDeleted::class,
         ],
     ];
 
