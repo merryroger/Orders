@@ -33,7 +33,7 @@ class ProductRestoredDeletedReport extends Mailable
     {
         $mailFrom = config('mail.from');
 
-        $_view = ($this->product->deleted_at === null) ? 'product_restored' : 'product_deleted';
+        $_view = ($this->product->trashed()) ? 'product_deleted' : 'product_restored';
 
         return $this->from($mailFrom)->view($_view, ['product' => $this->product]);
     }

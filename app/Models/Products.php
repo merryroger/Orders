@@ -28,7 +28,7 @@ class Products extends Model
             });
 
             foreach($emails as $email) {
-                Mail::to($email)->send(new ProductRestoredDeletedReport($this));
+                Mail::to($email)->queue(new ProductRestoredDeletedReport($this));
             }
         }
     }
