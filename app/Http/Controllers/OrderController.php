@@ -8,6 +8,7 @@ use App\Mail\OrderAccept;
 use App\Models\Orders;
 use App\Models\Products;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
@@ -15,12 +16,17 @@ class OrderController extends Controller
 
     public function index()
     {
-        $products = Products::all()->filter(function ($item) {
-            $item->setAttribute('alldata', $item->name . '/' . $item->price . ' руб.');
-            return $item;
-        });
+        $products = Cache::rememberForever('goods', function () {
 
-        $products = $products->pluck('alldata', 'id');
+            $_products = Products::all()->filter(function ($item) {
+                $item->setAttribute('alldata', $item->name . '/' . $item->price . ' руб.');
+                return $item;
+            });
+
+            $_products = $_products->pluck('alldata', 'id');
+
+            return $_products;
+        });
 
         if (Auth::user() != null) {
             return view('admin_order_products', compact('products'));

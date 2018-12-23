@@ -7,6 +7,7 @@ use App\Models\Products;
 use App\Http\Controllers\Controller;
 use App\Observers\ProoductObserver;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
@@ -33,6 +34,8 @@ class ProductController extends Controller
 
         $products = Products::withTrashed()->count();
 
+        Cache::forget('goods');
+
         return redirect()->route('admin.products.list', ['page' => ceil($products / self::PERPAGE)]);
     }
 
@@ -41,6 +44,8 @@ class ProductController extends Controller
         $product->delete();
 
         Log::channel('remove')->notice('The "' . $product->name . '" product has been deleted.');
+
+        Cache::forget('goods');
 
         return redirect()->route('admin.products.list', ['page' => $request->page]);
     }
@@ -51,6 +56,8 @@ class ProductController extends Controller
         $product->restore();
 
         Log::channel('restore')->notice('The "' . $product->name . '" product has been restored.');
+
+        Cache::forget('goods');
 
         return redirect()->route('admin.products.list', ['page' => $request->page]);
     }
