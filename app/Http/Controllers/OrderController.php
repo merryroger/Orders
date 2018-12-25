@@ -17,15 +17,7 @@ class OrderController extends Controller
     public function index()
     {
         $products = Cache::rememberForever('goods', function () {
-
-            $_products = Products::all()->filter(function ($item) {
-                $item->setAttribute('alldata', $item->name . '/' . $item->price . ' руб.');
-                return $item;
-            });
-
-            $_products = $_products->pluck('alldata', 'id');
-
-            return $_products;
+            return Products::all();
         });
 
         if (Auth::user() != null) {
